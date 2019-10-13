@@ -1,0 +1,64 @@
+{
+	"products": [
+		{
+			"name": "Aspirateur Dyson",
+			"price": "549.00",
+			"image": "assets/images/products/dyson.jpg",
+			"man": 0.35,
+			"woman": 0.60,
+			"cspp": 0.80,
+			"cspm": 0.30,
+			"young": 0.15,
+			"adult": 0.70,
+			"old": 0.60
+		},
+		{
+			"name": "Stylo BIC bleu",
+			"price": "0.35",
+			"image": "assets/images/products/bic.jpg",
+			"man": 0.65,
+			"woman": 0.70,
+			"cspp": 0.15,
+			"cspm": 0.80,
+			"young": 0.65,
+			"adult": 0.40,
+			"old": 0.50
+		},
+		{
+			"name": "Sardines",
+			"price": "4.45",
+			"image": "assets/images/products/sardines.jpg",
+			"man": 0.30,
+			"woman": 0.65,
+			"cspp": 0.10,
+			"cspm": 0.85,
+			"young": 0.10,
+			"adult": 0.65,
+			"old": 0.70
+		},
+		{
+			"name": "Porte-monnaie homme",
+			"price": "99.00",
+			"image": "assets/images/products/wallet.jpg",
+			"man": 0.85,
+			"woman": 0.25,
+			"cspp": 0.80,
+			"cspm": 0.20,
+			"young": 0.15,
+			"adult": 0.75,
+			"old": 0.45
+		},
+		{
+			"name": "Lessive liquide Ariel",
+			"price": "17.99",
+			"image": "assets/images/products/lessive.jpg",
+			"man": 0.25,
+			"woman": 0.80,
+			"cspp": 0.25,
+			"cspm": 0.75,
+			"young": 0.10,
+			"adult": 0.80,
+			"old": 0.70
+		}
+	]
+}

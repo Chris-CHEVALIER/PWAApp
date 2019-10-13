@@ -1,0 +1,7 @@
+<div fxLayout="row wrap" fxLayoutGap="5%" style="margin-left: 7%;">
+    <mat-card class="product-card" *ngFor="let product of products" (click)="addProduct(product)">
+        <mat-card-title>{{product.name}}</mat-card-title>
+        <img mat-card-image class="center" src={{product.image}} alt={{product.name}} style="width: 60%">
+        <mat-card-subtitle style="float: right; font-size: 20px;">{{product.price}}€</mat-card-subtitle>
+    </mat-card>
+</div>
