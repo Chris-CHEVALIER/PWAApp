@@ -1,20 +1,111 @@
+.menuIcon {
+  margin-top: 1%;
+  margin-left: 1%;
+  cursor: pointer;
+}
+
 .product-card {
-    width: 25%;
+    min-width: 150px;
+    min-height: 220px;
+    max-height: 220px;
     margin-top: 2%;
-    cursor: pointer;
+    margin-bottom: 2%;
 }
 
-.product-card:hover {
-    opacity: 0.75;
+.price {
+    position:absolute;
+    left: 5%;
+    bottom: 0;
 }
 
-.product-card:active {
-    transform: translateY(3px);
+.add {
+  position:absolute;
+  right: 5%;
+  bottom: 6%;
+  cursor: pointer;
+}
+
+.add:hover {
+    opacity: 0.5;
+}
+
+.productName {
+    font-size: 2vw;
 }
 
 .center {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    max-width: 80px;
+    max-height: 115px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    list-style: none;
+}
+  
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  height: 105px;
+  background-color: #555;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 95%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+input {
+  width: 35%;
+  float: right;
+}
+
+li button {
+  float: right;
+  width: 50px;
+}
+
+.button-row {
+  margin-right: 8px;
+  display: inline-block;
+}
+
+.row
+{
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+.column
+{
+    display: inline-block;
+    border-radius: 12px;
 }

@@ -1,7 +1,80 @@
-<div fxLayout="row wrap" fxLayoutGap="5%" style="margin-left: 7%;">
-    <mat-card class="product-card" *ngFor="let product of products" (click)="addProduct(product)">
-        <mat-card-title>{{product.name}}</mat-card-title>
-        <img mat-card-image class="center" src={{product.image}} alt={{product.name}} style="width: 60%">
-        <mat-card-subtitle style="float: right; font-size: 20px;">{{product.price}}€</mat-card-subtitle>
+<mat-button-toggle-group>
+    <div class="row">
+        <div *ngFor="let profile of profiles; let i = index" class="button-row">
+            <div *ngIf="getColor(i); let data">
+                <mat-button-toggle class="column" mat-raised-button (click)="changeProfile(profile)">Profil {{i+1}}</mat-button-toggle>
+            </div>
+        </div>
+        <button *ngIf="profiles.length < 3" mat-mini-fab (click)="addProfile()">+</button>
+    </div>
+</mat-button-toggle-group>
+
+<div *ngIf="selectedProducts.length > 2 && this.profile.man != 0">
+    <h1 align="center">Propositions</h1>
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5%" style="margin-left: 5%;" fxLayoutAlign="center center">
+        <mat-card fxFlex="15%;" fxFlex.xs="80%" [ngStyle]="product.float && {'box-shadow': '5px 5px #ff5c33'}" class="product-card tooltip" *ngFor="let product of proposedProducts">
+            <mat-card-title style="font-size: 18px;">{{product.name}}</mat-card-title>
+            <img mat-card-image class="center" src={{product.image}} alt={{product.name}} style="width: 60%">
+            <mat-card-subtitle class="price">{{product.price}}€</mat-card-subtitle>
+            <mat-icon class="add" (click)="addProduct(product)">add_shopping_cart</mat-icon>
+            <mat-card-content>
+                <ul class="tooltiptext">
+                    <li>Homme : {{product.man}}</li>
+                    <li>Femme : {{product.woman}}</li>
+                    <li>CSP + : {{product.cspp}}</li>
+                    <li>CSP - : {{product.cspm}}</li>
+                    <li>Jeune : {{product.young}}</li>
+                    <li>Adulte : {{product.adult}}</li>
+                    <li>Vieux : {{product.old}}</li>
+                </ul>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<h1 align="center">Produits stables</h1>
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5%" style="margin-left: 5%;" fxLayoutAlign="center center">
+    <mat-card fxFlex="15%;" fxFlex.lt-md="25%" fxFlex.xs="80%" class="product-card tooltip" *ngFor="let product of filterByNonFloat.slice(5, this.products.length)">
+        <mat-card-title style="font-size: 18px;">{{product.name}}</mat-card-title>
+        <img mat-card-image class="center" src={{product.image}} alt={{product.name}} style="width: 60%; height: 60%;">
+        <mat-card-subtitle class="price">{{product.price}}€</mat-card-subtitle>
+        <mat-icon class="add" (click)="addProduct(product)">add_shopping_cart</mat-icon>
+        <mat-card-content>
+            <ul class="tooltiptext">
+                <li>Homme : {{product.man}}</li>
+                <li>Femme : {{product.woman}}</li>
+                <li>CSP + : {{product.cspp}}</li>
+                <li>CSP - : {{product.cspm}}</li>
+                <li>Jeune : {{product.young}}</li>
+                <li>Adulte : {{product.adult}}</li>
+                <li>Vieux : {{product.old}}</li>
+            </ul>
+        </mat-card-content>
     </mat-card>
+</div>
+
+<div *ngIf="proposedProducts.length > 0">
+    <h1 align="center">Produits flottants</h1>
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5%" style="margin-left: 5%;" fxLayoutAlign="center center">
+        <mat-card fxFlex="15%;" fxFlex.xs="80%" style="box-shadow:5px 5px #ff5c33;" class="product-card tooltip" *ngFor="let product of filterByFloat">
+            <mat-card-title style="font-size: 18px;">{{product.name}}</mat-card-title>
+            <img mat-card-image class="center" src={{product.image}} alt={{product.name}} style="width: 60%">
+            <mat-card-subtitle class="price">{{product.price}}€</mat-card-subtitle>
+            <mat-icon class="add" (click)="addProduct(product)">add_shopping_cart</mat-icon>
+            <mat-card-content>
+                <form [formGroup]="productForm">
+                    <ul class="tooltiptext" style="height: 182px;">
+                        <li style="margin-bottom: 8px;"><label>Homme : <input type="number" formControlName="man" value="{{product.man}}"></label></li>
+                        <li style="margin-bottom: 8px;"><label>Femme : <input type="number" formControlName="woman" value="{{product.woman}}"></label></li>
+                        <li style="margin-bottom: 8px;"><label>CSP + : <input type="number" formControlName="cspp" value="{{product.cspp}}"></label></li>
+                        <li style="margin-bottom: 8px;"><label>CSP - : <input type="number" formControlName="cspm" value="{{product.cspm}}"></label></li>
+                        <li style="margin-bottom: 8px;"><label>Jeune : <input type="number" formControlName="young" value="{{product.young}}"></label></li>
+                        <li style="margin-bottom: 8px;"><label>Adulte : <input type="number" formControlName="adult" value="{{product.adult}}"></label></li>
+                        <li style="margin-bottom: 8px;"><label>Vieux : <input type="number" formControlName="old" value="{{product.old}}"></label></li>
+                        <li style="margin-bottom: 8px;"><button (click)="updateProduct(product)">OK</button></li>
+                    </ul>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

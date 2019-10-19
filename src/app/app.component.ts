@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { SwPush } from '@angular/service-worker'
+import { PushNotificationService } from './push-notification.service'
 
+const VAPID_PUBLIC = "BAHBSJAtPMXlX4ou50z-Bwlfdlyzyz26QgUDGmyLHT04E3Sjls-yvNdXdhsXJGTufxBp3NnQs81omm4HJHzAPUQ";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,8 +10,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'MyAngularTest';
-  onButtonClicked(evt: MouseEvent) {
-    if(this.title == 'Bob Le Bricoleur') this.title = "MyAngularTest";
-    else if(this.title == 'MyAngularTest') this.title = "Bob Le Bricoleur";
+
+  constructor(swPush: SwPush, pushService: PushNotificationService) {
+    if (swPush.isEnabled) {
+      swPush
+        .requestSubscription({
+          serverPublicKey: VAPID_PUBLIC,
+        })
+        .then(subscription => {
+          pushService.sendSubscriptionToTheServer(subscription).subscribe();
+        })
+        .catch(console.error)
+    }
   }
 }
